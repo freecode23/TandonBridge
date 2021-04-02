@@ -1,14 +1,16 @@
 # TandonBridge
-C++ programming exercises contents
+C++ programming exercises contents: 
+1) Educative:
+Extra programming exercises using recursion on various data types
 
-Module 1: 
+2) Module 1: 
 1. Data Types and Expressions
 2. Branching Statements
 3. Understand how Boolean expressions are used to control the flow of programs in
 a different order than the default sequential flow.
 4. While and for loops as well as some strategies of how to express iterative processes.
 
-Module 2:
+3) Module 2:
 1. Function scope
 2. Run-time-stack model
 3. call-by-value and call-by-reference
@@ -20,7 +22,7 @@ Module 2:
 9. Pointer arithmetics
 10. Recurisve Algorithm
 
-Module 3:
+4) Module 3:
 1. Classes
 2. Friends function
 3. Overloading operator
