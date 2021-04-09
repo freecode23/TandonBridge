@@ -104,7 +104,7 @@ public:
     // 4. overload operator
     friend istream &operator>>(istream &ins, Check &check);
     friend ostream &operator<<(ostream &outs, const Check &check);
-    friend Check &operator+(const Check &check1, const Check &check2);
+    friend Check operator+(const Check &check1, const Check &check2);
     friend bool operator<(const Check &check1, const Check &check2);
 
 private:
@@ -269,7 +269,7 @@ void Check::setCheckCashStatus(bool isCheckCashed)
 
 // 4. Operator overload
 // addition
-Check &operator+(const Check &check1, const Check &check2)
+Check operator+(const Check &check1, const Check &check2)
 {
     Check temp;
     temp.amount = check1.amount + check2.amount;
