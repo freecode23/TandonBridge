@@ -26,3 +26,5 @@ a different order than the default sequential flow.
 1. Classes
 2. Friends function
 3. Overloading operator
+4. Inheritance
+5. Algorithm
