@@ -1,3 +1,5 @@
+# Inheritance in C++ #
+
 The goal for this Project is to create a simple two-dimensional predator-prey simulation. <br>
 In this simulation the prey are ants and the pred-ators are doodlebugs. <br>
 These critters live in a world composed of a 20 × 20 grid of cells.<br>
