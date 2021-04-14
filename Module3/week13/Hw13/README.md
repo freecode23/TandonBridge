@@ -6,12 +6,12 @@ The grid is  enclosed, so a critter is not allowed to move off the edges of the 
 Time is simulated in time steps. Each critter performs some action every time step.<br>
 
 
-The ants behave according to the following model:<br>
-Move. Every time step, randomly try to move up, down, left, or right.<br>
+The ants behave according to the following model (functions for **Ants**):<br>
+*Move*. Every time step, randomly try to move up, down, left, or right.<br>
 If the neighboring cell in the selected direction is occupied or would move<br>
 the ant off the grid, then the ant stays in the current cell.<br>
 
-Breed. If an ant survives for three time steps, then at the end of the time step (that is; after moving)<br>
+*Breed*. If an ant survives for three time steps, then at the end of the time step (that is; after moving)<br>
 the ant will breed. This is simulated by creat-ing a new ant in an adjacent<br>
 (up, down, left, or right) cell that is empty. If there is no empty cell available, then no breeding occurs.<br>
 Once an off-spring is produced, an ant cannot produce an offspring until three more time steps have elapsed.<br>
