@@ -1,7 +1,7 @@
 # TandonBridge
 C++ programming exercises contents: 
-## 1) Educative.io exercises: ##
-Extra programming exercises using recursion on various data types
+## 1) Recursive exercise: ##
+Extra programming exercises from educative.io platform. Use recursion on various data types to solve problems
 
 ## 2) Module 1: ##
 1. Data Types and Expressions
