@@ -34,7 +34,7 @@ During one turn, all the doodlebugs should move before the ants do.<br>
 Write a program to implement this simulation and draw the world using ASCII characters of “o” for an <br>
 ant and “X” for a doodlebug or "-" for an empty space.<br>
 Create a class named **Organism** that encapsulates basic data common to both ants and doodlebugs.<br>
-This class should have a virtual function named move that is defined in the derived classes of **Ant** and ****Doodlebug**.<br>
+This class should have a virtual function named *move* that is defined in the derived classes of **Ant** and ****Doodlebug**.<br>
 You may need additional data structures to keep track of which critters have moved.<br>
 
 Initialize the world with 5 doodlebugs and 100 ants.<br>
