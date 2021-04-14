@@ -7,7 +7,7 @@ Only one critter may occupy a cell at a time. <br>
 The grid is  enclosed, so a critter is not allowed to move off the edges of the world. <br>
 Time is simulated in time steps. Each critter performs some action every time step.<br>
 
-## functions for **Ants** ##
+### functions for **Ants** ###
 The ants behave according to the following model:<br>
 *Move*. Every time step, randomly try to move up, down, left, or right.<br>
 If the neighboring cell in the selected direction is occupied or would move<br>
@@ -18,7 +18,7 @@ the ant will breed. This is simulated by creat-ing a new ant in an adjacent<br>
 (up, down, left, or right) cell that is empty. If there is no empty cell available, then no breeding occurs.<br>
 Once an off-spring is produced, an ant cannot produce an offspring until three more time steps have elapsed.<br>
 
-## functions for **Doodlebugs** ##
+### functions for **Doodlebugs** ###
 The doodlebugs behave according to the following model:<br>
 *Move*. Every time step, if there is an adjacent ant (up, down, left, or right),<br>
 then the doodlebug will move to that cell and eat the ant. Otherwise, the doodlebug moves<br>
@@ -31,6 +31,7 @@ will spawn off a new doodlebug in the same manner as the ant.<br>
 then at the end of the third time step it will starve and die.<br>
 The doodlebug should then be removed from the grid of cells.<br>
 
+### Other requirements ###
 During one turn, all the doodlebugs should move before the ants do.<br>
 
 Write a program to implement this simulation and draw the world using ASCII characters of “o” for an <br>
