@@ -1,4 +1,6 @@
 /* CH12 #7
+Author: Sherly Hartono
+Date: 9 April 2021
 Write a checkbook balancing program.
 The program will read in the following for all checks that were not cashed as of the last time you balanced your checkbook:
 the number of each check, the amount of the check, and whether or not it has been cashed.
