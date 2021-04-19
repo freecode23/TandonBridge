@@ -1,5 +1,6 @@
 /*
 Author: Sherly Hartono
+Hw 14
 
 (Weiss 7.40): The following divide-and-conquer algorithm is proposed for finding the simultaneous
 maximum and minimum: If there is one item, it is the maximum and
@@ -12,114 +13,93 @@ minimum for the entire problem.
 
 Write the above function which will take in a vector and solve the problem,
 producing a vector of two elements, the min and max.
-
-
 */
 
 #include <iostream>
 #include <string.h>
 #include <vector>
-
 using namespace std;
 
-vector<int> findMinMax(vector<int> the_vector)
+const int MIN_INDEX = 0;
+const int MAX_INDEX = 1;
+vector<int> findMinMax(const vector<int> the_vector, int lo, int hi);
+
+int main()
+{
+    vector<int> vectInt{1343, 11 ,2, 299, 122 ,33, 712321,712321};
+    vector<int> minMax = findMinMax(vectInt, 0, vectInt.size()-1);
+
+    cout << "min is: " << minMax[MIN_INDEX] <<endl;
+    cout << "max is: " << minMax[MAX_INDEX] <<endl;
+}
+
+vector<int> findMinMax(const vector<int> the_vector, int lo, int hi)
 {
     vector<int> minMaxVector; 
 
-    // 1. base case 1: if there is one item
-    if(the_vector.size() == 1)
+    // 1. Base case 1: if there is one item
+    if(lo == hi)
     {
         // insert min
-        minMaxVector.push_back(the_vector[0]);
+        minMaxVector.push_back(the_vector[lo]);
         // insert max
-        minMaxVector.push_back(the_vector[0]);
+        minMaxVector.push_back(the_vector[hi]);
 
         return minMaxVector;
     }
 
-    // 2. base case 2: if there are two items
-    if(the_vector.size() == 2)
+    // 2. Base case 2: if there are two items
+    if(lo+1 == hi)
     {
         //compare
-        if(the_vector[0] < the_vector[1])
+        if(the_vector[lo] < the_vector[hi])
         {
             //low is min
-            minMaxVector.push_back(the_vector[0]);
-            minMaxVector.push_back(the_vector[1]);
+            minMaxVector.push_back(the_vector[lo]);
+            minMaxVector.push_back(the_vector[hi]);
         }
         else
         {
             //hi is min
-            minMaxVector.push_back(the_vector[0]);
-            minMaxVector.push_back(the_vector[1]);
+            minMaxVector.push_back(the_vector[hi]);
+            minMaxVector.push_back(the_vector[lo]);
         }
 
         return minMaxVector;
     }
 
-    // 3. 3rd case: f there are more than 2 items
+    // 3. Recursive case: if there are more than 2 items
     // get middle index
-    int mid = the_vector.size() /2;
-    // cout << "mid index is" << mid <<endl;
+    int mid = (lo + hi) /2;
 
-    // create left vector and right vector 
-    vector<int> vectorLeft, vectorRight;
+    // find min and max from the split vector
+    vector <int> minMaxLeftVector = findMinMax(the_vector, lo, mid);
+    vector <int> minMaxRightVector = findMinMax(the_vector, mid+1, hi);
 
-    // insert element to vector left
-    for(int i = 0; i <= mid; i++)
-    {
-        vectorLeft.push_back(the_vector[i]);
-    }
-
-    // insert element to vector right
-    for(int i = mid+1; i < the_vector.size(); i++)
-    {
-        vectorRight.push_back(the_vector[i]);
-    }
-
-    // get the min max of these two vector
-    vector <int> minMaxLeftVector = findMinMax(vectorLeft);
-    vector <int> minMaxRightVector = findMinMax(vectorRight);
-
-
-    // 1. Get the minimum from left and right vector
-    if(minMaxLeftVector[0] < minMaxRightVector[0])
+    // 1. Compare Minimum
+    if(minMaxLeftVector[MIN_INDEX] < minMaxRightVector[MIN_INDEX])
     {
         // left is min
-        minMaxVector.push_back(minMaxLeftVector[0]);
+        minMaxVector.push_back(minMaxLeftVector[MIN_INDEX]);
     }
     else
     {
         // right is min
-        minMaxVector.push_back(minMaxRightVector[0]);
+        minMaxVector.push_back(minMaxRightVector[MIN_INDEX]);
     }
 
-    // 2. Get the maximum from left and right vector
-    if(minMaxLeftVector[1] > minMaxRightVector[1])
+    // 2. Compare Maximum
+    if(minMaxLeftVector[MAX_INDEX] > minMaxRightVector[MAX_INDEX])
     {
         // left is max
-        minMaxVector.push_back(minMaxLeftVector[1]);
+        minMaxVector.push_back(minMaxLeftVector[MAX_INDEX]);
     }
     else
     {
         // right is max
-        minMaxVector.push_back(minMaxRightVector[1]);
+        minMaxVector.push_back(minMaxRightVector[MAX_INDEX]);
     }
 
     return minMaxVector;
 
-}
-
-int main()
-{
-    vector<int> vectInt{1343, 11, 445, 2, 330, 73243, 123};
-
-    // cout << vectInt.size() <<endl;
-    vector<int> minMax = findMinMax(vectInt);
-
-    for (int x : minMax)
-    {
-        cout << x << " ";
-
-    }
 }
