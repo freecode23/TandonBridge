@@ -66,6 +66,7 @@ public:
     // Money. Notation for inputting negative amounts is as in − $100.00
     // Precondition: If ins is a file input stream, then ins has already been
     // connected to a file.
+    // return istream object
     friend istream &operator>>(istream &ins, Money &amount);
     friend ostream &operator<<(ostream &outs, const Money &amount);
 

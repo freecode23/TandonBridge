@@ -17,7 +17,7 @@ int main()
     string name;
 
     int hiIndex = vectorOfNames.size() - 1;
-    while (getline(inFileObject1, name))
+    while (getline(inFileObject1, name)) // quit when it reach the end of file
     {
         // get size of vector
         if (!isFoundBinarySearch(vectorOfNames, name, 0, hiIndex))

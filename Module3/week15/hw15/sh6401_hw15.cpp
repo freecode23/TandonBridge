@@ -1,3 +1,19 @@
+/*
+Author: Sherly Hartono
+Date: 27 April 2021
+Hw15
+Use Linkedlist to keep track of employee data.
+Employee and hours worked datas will be input from text files
+Sort the linkedlist with employee with highest salary printed first.
+Design a system to keep track of employee data. The system should keep track of an employee’s name,
+ID number and hourly pay rate in a class called Employee.
+You may also store any additional data you may need, hint, you need something extra.
+This data is stored in a file (user selectable) with the id number, hourly pay rate,
+and the employee’s full name (example):
+17 5.25 Daniel Katz
+18 6.75 John F. Jones
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -110,7 +126,7 @@ public:
 	int size();
 	bool isEmpty() { return head->next == tail; }
 	void printList();
-	void sortList();
+	void selectionSortList();
 };
 
 /*
@@ -146,12 +162,13 @@ Employee::Employee(int the_id, string the_name, double the_pay_rate, int the_tot
 template <typename T>
 void Node<T>::printNodeData()
 {
-	cout << data.getId() << "\t"
-		 << data.getName() << "\t"
-		 << data.getPayRate() << "\t"
-		 << data.getTotalHours() << "\t"
-		 << data.getSalary() << "\t"
-		 << endl;
+	cout << data.getName() << ",\t$"  <<  data.getSalary()<<endl;
+	// cout << data.getId() << "\t"
+	// 	 << data.getName() << "\t"
+	// 	 << data.getPayRate() << "\t"
+	// 	 << data.getTotalHours() << "\t"
+	// 	 << data.getSalary() << "\t"
+	// 	 << endl;
 }
 
 template <typename T>
@@ -266,32 +283,38 @@ void LinkedList<T>::printList()
 
 // sort list
 template <typename T>
-void LinkedList<T>::sortList()
+void LinkedList<T>::selectionSortList()
 {
+	// initialize iterator pointer
 	Node<T> *currentPtr = head->next;
-	Node<T> *iterationPtr = head->next->next;
+	Node<T> *iterationPtr = currentPtr->next;
 	Node<T> *paidMostPtr = currentPtr;
+	T temp = T();
 
-	// while(currentPtr != tail)
-	// {
+	while(currentPtr != tail)
+	{
+		paidMostPtr = currentPtr;
+		while(iterationPtr != tail)
+		{	
+			// if the Employee we are iterating over has higher salary
+			if(iterationPtr->data.getSalary() > paidMostPtr->data.getSalary()) 
+			{
+				// swap
+				paidMostPtr = iterationPtr;
+			}
+			iterationPtr = iterationPtr->next;
+		}
+		// swap current and paidMost so that paidMost will be at the beginning of the array
+		temp = T(currentPtr->data.getId(),currentPtr->data.getName(),currentPtr->data.getPayRate(), currentPtr->data.getTotalHours(), currentPtr->data.getSalary());
+		currentPtr->data = paidMostPtr->data;
+		paidMostPtr->data = temp;
 
-	// }
-
-
+		// move iteration
+		currentPtr = currentPtr->next;
+		iterationPtr = currentPtr->next;
+	}
 }
 
-// template <class T>
-// void selectionSort(vector<T>& v){ //O(N^2)
-// 	for (int i = 0; i < v.size(); i++){
-// 		int indexOfLowest = i;
-// 		for (int j = i + 1; j < v.size(); j++) // j is after i
-// 			if (v[j] < v[indexOfLowest])
-// 				indexOfLowest = j;
-// 		T temp = v[i];
-// 		v[i] = v[indexOfLowest];
-// 		v[indexOfLowest] = temp;
-// 	}
-// }
 
 /*
 open Input File
@@ -329,7 +352,7 @@ int main()
 
 	// 1. number of hours info
 	ifstream fileReader1;
-	cout << "1. Enter filename for **total hours** to get input: \n";
+	cout << "1. Enter filename for the TOTAL HOURS WORKED data: \n";
 	openInputFile(fileReader1);
 
 	// prepare variable
@@ -359,12 +382,11 @@ int main()
 		}
 		
 	}
-
 	fileReader1.close();
 
-	ifstream fileReader2;
 	// 3. read employee info
-	cout << "1. Enter filename for **Employees** to get input: \n";
+	ifstream fileReader2;
+	cout << "1. Enter filename for EMPLOYEES data: \n";
 	// - open
 	openInputFile(fileReader2);
 
@@ -392,7 +414,12 @@ int main()
 
 	}
 	fileReader2.close();
-	employeeList->printList();
+	// employeeList->printList();
 
 	// 4. sort linkedlist
+	employeeList->selectionSortList();
+
+	// 5. Print payroll
+	cout << "********Payroll Information********\n";
+	employeeList->printList();
 }

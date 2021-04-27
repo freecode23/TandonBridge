@@ -1,0 +1,5 @@
+17 1.00 John F. Jones
+19 3.00 Madonna
+18 5.00 Daniel Katz
+20 1.00 Belle Noell
+12 20.00 Onn Bunn Lo
